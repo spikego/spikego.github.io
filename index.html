@@ -3,16 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <title>SPIKE WEB</title>
-</head>
-<body>
     <style>
         h1{
             color: rgb(255, 0, 255);
             text-align: center;
             text-shadow: 0px 0px 5px rgba(255, 0, 0, 0.452);
         }
+        
+        /* 媒体查询，当屏幕宽度小于600px时，修改h1和marquee的样式 */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.5em; /* 调整字体大小 */
+            }
+            marquee {
+                display: none; /* 在小屏幕上隐藏滚动文本 */
+            }
+        }
     </style>
-
+</head>
+<body>
     <h1>SPIKE WEB</h1>
 
     <style>
@@ -21,21 +30,31 @@
         }
     </style>
 
-   <marquee>目前网页开发中，后续将会上架各种产品，所以敬请期待！------------ 即将推出:暂不透露 ---------网站比较简陋，先这样凑合 --------</marquee>
+   <marquee>目前网页开发中，后续将会上架各种产品，所以敬请期待!------------ 即将推出:暂不透露 ---------网站比较简陋，先这样凑合 --------</marquee>
 
    <style>
     h2{
         color: rgb(255, 0, 140);
     }
-</style>
-   <h2>这是什么网页？</h2>
-   <style>
+    
+    /* 媒体查询，当屏幕宽度小于600px时，修改h2和p的样式 */
+    @media (max-width: 600px) {
+        h2 {
+            font-size: 1.2em; /* 调整字体大小 */
+        }
+        p {
+            font-size: 1em; /* 调整字体大小 */
+        }
+    }
+    
     p{
         color: rgb(121, 0, 84);
     }
 </style>
-   <p>这是作者SPIKEGO制作的个人主页！由于资金原因，只能使用Github pages的静态托管</p>
-   <p>你可以看看我的GitHub主页，参与协作，<a href="https://github.com/spikego">现在就去???</a></p>
+   <h2>这是什么网页？</h2>
+   <p>这是作者SPIKEGO制作的个人主页!由于资金原因，只能使用Github pages的静态托管</p >
+   <p>你可以看看我的GitHub主页，参与协作，现在就去???</p >
    <!-- 其实就是没米，所以火速给我捐赠 -->
 </body>
 </html>
+ 
