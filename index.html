@@ -55,6 +55,20 @@
    <p>这是作者SPIKEGO制作的个人主页!由于资金原因，只能使用Github pages的静态托管</p >
    <p>你可以看看我的GitHub主页，参与协作，现在就去???</p >
    <!-- 其实就是没米，所以火速给我捐赠 -->
+
+   <script>
+    // 定义图片文件夹中的图片名称
+    const images = ["background1.png", "background2.png"];
+
+    // 随机选择一张图片
+    const randomImage = image[Math.floor(Math.random() * images.length)];
+
+    // 设置背景图片
+    document.body.style.backgroundImage = `url('picture/${randomImage}')`;
+
+    // 设置背景图片的尺寸和重复方式
+    document.body.style.backgroundSize = "cover";
+    document.body.style.backgroundRepeat = "no-repeat";
+   </script>
 </body>
 </html>
- 
