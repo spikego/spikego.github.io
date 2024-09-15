@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SPIKE WEB</title>
     <style>
         h1{
@@ -61,7 +62,7 @@
     const images = ["background1.png", "background2.png"];
 
     // 随机选择一张图片
-    const randomImage = image[Math.floor(Math.random() * images.length)];
+    const randomImage = images[Math.floor(Math.random() * images.length)];
 
     // 设置背景图片
     document.body.style.backgroundImage = `url('picture/${randomImage}')`;
@@ -71,4 +72,3 @@
     document.body.style.backgroundRepeat = "no-repeat";
    </script>
 </body>
-</html>
