@@ -1,1 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPIKEGO LIBRARY</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
 
+        .card {
+            backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            margin: 10px;
+            text-align: center;
+            max-width: 300px;
+        }
+
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #0078d4;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #005a9e;
+        }
+
+        .category-title {
+            text-align: center;
+            font-size: 24px;
+            margin-top: 20px;
+            color: #333;
+        }
+
+        @media (max-width: 600px) {
+            .card-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="content"></div>
+
+    <script>
+        // 定义图片文件夹中的图片名称
+        const images = ["background1.png", "background2.png", "background3.png"];
+
+    // 随机选择一张图片
+    const randomImage = images[Math.floor(Math.random() * images.length)];
+
+    // 设置背景图片
+    document.body.style.backgroundImage = `url('https://spikego.github.io/picture/${randomImage}')`;
+
+    // 设置背景图片的尺寸和重复方式
+    document.body.style.backgroundSize = "cover";
+    document.body.style.backgroundRepeat = "no-repeat";
+
+        // 动态加载 list.json 并生成内容
+        fetch('./list.json')
+            .then(response => response.json())
+            .then(data => {
+                const content = document.getElementById('content');
+                const categories = {};
+
+                // 按分类整理数据
+                data.forEach(item => {
+                    if (!categories[item.category]) {
+                        categories[item.category] = [];
+                    }
+                    categories[item.category].push(item);
+                });
+
+                // 生成分类和卡片
+                for (const [category, items] of Object.entries(categories)) {
+                    const categoryTitle = document.createElement('h2');
+                    categoryTitle.className = 'category-title';
+                    categoryTitle.textContent = category;
+                    content.appendChild(categoryTitle);
+
+                    const cardContainer = document.createElement('div');
+                    cardContainer.className = 'card-container';
+
+                    items.forEach(item => {
+                        const card = document.createElement('div');
+                        card.className = 'card';
+                        card.innerHTML = `
+                            <h2>${item.name}</h2>
+                            <p>${item.description}</p>
+                            <button class="button" onclick="location.href='${item.link}'">查看详情</button>
+                        `;
+                        cardContainer.appendChild(card);
+                    });
+
+                    content.appendChild(cardContainer);
+                }
+            })
+            .catch(error => console.error('加载 list.json 失败:', error));
+    </script>
+</body>
+</html>
