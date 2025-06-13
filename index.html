@@ -6,15 +6,39 @@
     <title>SPIKEGO WEB</title>
     <link rel="icon" href=./icon/icon.png>
     <style>
-        h1{
-            color: rgb(255, 0, 255);
-            text-align: center;
-            text-shadow: 0px 0px 5px rgba(255, 0, 0, 0.452);
-            background-color: rgba(255, 255, 255, 0.5); /* 背景颜色及透明度，可根据需要调整 */
-            backdrop-filter: blur 8px); /* 毛玻璃效果 */
-            border-radius: 10px; /* 圆角大小 */
-         padding: 20px; /* 内边距，可根据需要调整 */
-        }
+h1 {
+    /* 设置文字颜色为亮粉色 */
+    color: rgb(255, 0, 255);
+    /* 文字居中对齐 */
+    text-align: center;
+    /* 文字阴影，增强立体感 */
+    text-shadow: 0px 0px 5px rgba(255, 0, 0, 0.452);
+    /* 背景颜色设置为白色，透明度为 0.3，更具通透感 */
+    background-color: rgba(255, 255, 255, 0.3);
+    /* 使用 backdrop-filter 属性实现毛玻璃效果，模糊半径设为 15px，使背景更模糊 */
+    backdrop-filter: blur(15px);
+    /* 为元素添加一个柔和的外发光效果，模拟液态玻璃的光影 */
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3), 
+                0 0 40px rgba(255, 255, 255, 0.2), 
+                0 0 60px rgba(255, 255, 255, 0.1);
+    /* 设置圆角为 15px，让元素边缘更圆润 */
+    border-radius: 15px;
+    /* 设置内边距为 20px，使内容与边框保持一定距离 */
+    padding: 20px;
+    /* 添加过渡效果，当元素状态改变时，如鼠标悬停，会有平滑的动画过渡 */
+    transition: all 0.3s ease;
+}
+
+/* 鼠标悬停时的样式 */
+h1:hover {
+    /* 鼠标悬停时，背景透明度降低，颜色更明显 */
+    background-color: rgba(255, 255, 255, 0.4);
+    /* 悬停时，外发光效果增强，使元素更突出 */
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.4), 
+                0 0 50px rgba(255, 255, 255, 0.3), 
+                0 0 70px rgba(255, 255, 255, 0.2);
+}
+ 
         
         /* 媒体查询，当屏幕宽度小于600px时，修改h1和marquee的样式 */
         @media (max-width: 600px) {
