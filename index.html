@@ -52,7 +52,44 @@ h1:hover {
     </style>
 </head>
 <body>
-    <h1>SPIKE WEB/2025-WINTER</h1>
+    <!-- 导航栏开始 -->
+    <nav id="mainNav">
+        <span id="navTitle">SPIKE WEB</span>
+        <a href="index.html">首页</a>
+        <a href="library/index.html">库</a>
+        <a href="https://github.com/spikego">GitHub主页</a>
+    </nav>
+    <!-- 导航栏结束 -->
+    <h1 id="mainTitle">SPIKE WEB/2025-WINTER</h1>
+    <script>
+    function getSeason(month) {
+        if (month >= 3 && month <= 5) return "SPRING";
+        if (month >= 6 && month <= 8) return "SUMMER";
+        if (month >= 9 && month <= 11) return "AUTUMN";
+        return "WINTER";
+    }
+    const now = new Date();
+    const season = getSeason(now.getMonth() + 1);
+    document.getElementById("mainTitle").textContent = `SPIKE WEB/${now.getFullYear()}-${season}`;
+
+    // 导航栏动画逻辑
+    function isElementInViewport(el) {
+        const rect = el.getBoundingClientRect();
+        return rect.bottom > 0 && rect.top < window.innerHeight;
+    }
+    const nav = document.getElementById('mainNav');
+    const navTitle = document.getElementById('navTitle');
+    const mainTitle = document.getElementById('mainTitle');
+    function handleNavShrink() {
+        if (!isElementInViewport(mainTitle)) {
+            nav.classList.add('shrink');
+        } else {
+            nav.classList.remove('shrink');
+        }
+    }
+    window.addEventListener('scroll', handleNavShrink);
+    handleNavShrink();
+    </script>
 
     <style>
         marquee{
@@ -144,8 +181,7 @@ h1:hover {
    <p>你可以看看我的GitHub主页，参与协作，<a href="https://github.com/spikego">现在就去???</a></p >
    <p>你还可以效仿该网站，制作自己的个人主页!他是开源的!github上搜spikego.github.io就可以看到<a href="https://github.com/spikego/spikego.github.io">仓库</a></p>
    <p>如果需要支持我,前往<a href="https://afdian.com/a/spikego">爱发电搜索spikego为我发电</a></p>
-   <!-- 其实就是没米，所以火速给我捐赠 -->
-    <p>现在前往RTClient!</p >
+
 
    <script>
     // 定义图片文件夹中的图片名称
@@ -162,4 +198,153 @@ h1:hover {
     document.body.style.backgroundRepeat = "no-repeat";
    </script>
 
+   <style>
+    /* 灵动岛毛玻璃发光导航栏（上下圆角椭圆形） */
+    #mainNav {
+        width: 96vw;
+        max-width: 700px;
+        height: 38px;
+        margin: 18px auto 0 auto;
+        background: rgba(255,255,255,0.18);
+        backdrop-filter: blur(18px) saturate(180%);
+        -webkit-backdrop-filter: blur(18px) saturate(180%);
+        box-shadow: 0 2px 32px 0 rgba(31, 38, 135, 0.18), 0 0 24px 8px rgba(255,0,255,0.12);
+        border-radius: 999px;
+        border: 1px solid rgba(255,255,255,0.22);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 18px;
+        font-weight: bold;
+        position: sticky;
+        top: 18px;
+        z-index: 100;
+        transition: all 0.35s cubic-bezier(.4,0,.2,1);
+        overflow: hidden;
+    }
+    #mainNav.shrink {
+        height: 28px;
+        border-radius: 999px;
+        box-shadow: 0 2px 16px 0 rgba(31, 38, 135, 0.22), 0 0 12px 4px rgba(255,0,255,0.10);
+    }
+    #navTitle {
+        display: none;
+        color: rgb(255,0,255);
+        font-size: 1em;
+        font-weight: bold;
+        transition: opacity 0.3s;
+        margin-right: 12px;
+        letter-spacing: 2px;
+        text-shadow: 0 2px 8px rgba(255,0,255,0.18), 0 0 12px rgba(255,0,255,0.18);
+        background: rgba(255,255,255,0.18);
+        border-radius: 12px;
+        padding: 2px 10px;
+        box-shadow: 0 2px 8px rgba(31,38,135,0.10);
+        border: 1px solid rgba(255,255,255,0.12);
+        backdrop-filter: blur(6px) saturate(180%);
+        -webkit-backdrop-filter: blur(6px) saturate(180%);
+    }
+    #mainNav.shrink #navTitle {
+        display: inline;
+        opacity: 1;
+    }
+    #mainNav:not(.shrink) #navTitle {
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+    #mainNav a {
+        color: rgb(255,0,140);
+        text-decoration: none;
+        font-size: 1em;
+        padding: 4px 12px;
+        border-radius: 8px;
+        transition: background 0.2s, color 0.2s;
+        background: rgba(255,255,255,0.08);
+        box-shadow: 0 2px 8px rgba(31,38,135,0.06);
+        border: 1px solid rgba(255,255,255,0.08);
+        backdrop-filter: blur(4px) saturate(180%);
+        -webkit-backdrop-filter: blur(4px) saturate(180%);
+    }
+    #mainNav a:hover {
+        background: rgba(255,0,140,0.12);
+        color: rgb(255,0,255);
+        box-shadow: 0 4px 16px rgba(255,0,140,0.08);
+    }
+    @media (max-width: 600px) {
+        #mainNav {
+            gap: 6px;
+            font-size: 0.95em;
+            border-radius: 16px 16px 0 0;
+            height: 32px;
+            top: 8px;
+        }
+        #navTitle {
+            font-size: 0.9em;
+            margin-right: 6px;
+            padding: 1px 6px;
+        }
+        #mainNav a {
+            font-size: 0.95em;
+            padding: 2px 6px;
+        }
+    }
+    </style>
+
 </body>
+<script>
+// WebGL液态玻璃效果（修正纯白问题，增加大面积渐变和光斑）
+function navGlassWebGL() {
+    const canvas = document.getElementById('navGlass');
+    if (!canvas) return;
+    const nav = document.getElementById('mainNav');
+    canvas.width = nav.offsetWidth;
+    canvas.height = nav.offsetHeight;
+    const gl = canvas.getContext('webgl');
+    if (!gl) return;
+    // 先填充大面积半透明渐变色
+    gl.clearColor(1,1,1,0.10); // 更高透明度
+    gl.clear(gl.COLOR_BUFFER_BIT);
+    // 绘制更大面积的光斑
+    function drawCircle(x, y, r, color) {
+        const n = 60;
+        const verts = [];
+        for(let i=0;i<=n;i++){
+            const a = 2*Math.PI*i/n;
+            verts.push(x, y);
+            verts.push(x + r*Math.cos(a), y + r*Math.sin(a));
+        }
+        const arr = new Float32Array(verts);
+        const buf = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+        gl.bufferData(gl.ARRAY_BUFFER, arr, gl.STATIC_DRAW);
+        const vertCode = `attribute vec2 a;void main(){gl_Position=vec4(a,0,1);}`;
+        const fragCode = `precision mediump float;uniform vec4 c;void main(){gl_FragColor=c;}`;
+        const vs = gl.createShader(gl.VERTEX_SHADER);
+        gl.shaderSource(vs, vertCode);
+        gl.compileShader(vs);
+        const fs = gl.createShader(gl.FRAGMENT_SHADER);
+        gl.shaderSource(fs, fragCode);
+        gl.compileShader(fs);
+        const prog = gl.createProgram();
+        gl.attachShader(prog, vs);
+        gl.attachShader(prog, fs);
+        gl.linkProgram(prog);
+        gl.useProgram(prog);
+        const loc = gl.getAttribLocation(prog, 'a');
+        gl.enableVertexAttribArray(loc);
+        gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+        const cLoc = gl.getUniformLocation(prog, 'c');
+        gl.uniform4fv(cLoc, color);
+        gl.drawArrays(gl.TRIANGLE_FAN, 0, arr.length/2);
+    }
+    // 画更大面积的光斑和渐变
+    drawCircle(0.0,0.0,0.95,[1,1,1,0.10]); // 大面积底色
+    drawCircle(-0.7,0.2,0.3,[1,1,1,0.18]);
+    drawCircle(0.5,-0.1,0.2,[1,0.8,1,0.12]);
+    drawCircle(0.0,0.0,0.5,[1,1,1,0.08]);
+    drawCircle(0.7,0.3,0.25,[0.9,0.9,1,0.13]);
+}
+window.addEventListener('resize', navGlassWebGL);
+setTimeout(navGlassWebGL, 100);
+</script>
+</html>
